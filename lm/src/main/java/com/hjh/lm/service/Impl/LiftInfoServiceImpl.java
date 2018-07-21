@@ -31,6 +31,8 @@ public class LiftInfoServiceImpl implements LiftInfoService {
         this.liftInfoRepository = liftInfoRepository;
     }
 
+
+
     /**
      * 保存设备记录到数据库
      * @param liftInfo 设备信息实例
@@ -70,7 +72,7 @@ public class LiftInfoServiceImpl implements LiftInfoService {
     /**
      * 根据电梯编号删除电梯
      * @param liftId 电梯编号
-     * @return 返回删除的电梯的信息
+     *  返回删除的电梯的信息
      */
     @Override
     public void removeLiftByLiftId(String liftId) {
