@@ -39,11 +39,15 @@ public class ShowcaseClientStarter {
 	private static ClientGroupContext clientGroupContext = new ClientGroupContext(tioClientHandler, aioListener, reconnConf);
 
 	private static TioClient tioClient = null;
+	// 电梯高度, 厘米
+	private static int height = 500;
+
 
 	static ClientChannelContext clientChannelContext;
 
 	/**
 	 * command方法，展示在cmd中的输出
+	 *
 	 * @throws Exception
 	 */
 	public static void command() throws Exception {
@@ -82,6 +86,7 @@ public class ShowcaseClientStarter {
 
 	/**
 	 * 启动函数
+	 *
 	 * @param args 参数
 	 * @throws Exception
 	 */
@@ -95,6 +100,7 @@ public class ShowcaseClientStarter {
 
 	/**
 	 * 处理请求的方法
+	 *
 	 * @param line
 	 * @throws Exception
 	 */
@@ -125,8 +131,10 @@ public class ShowcaseClientStarter {
 			while (!Thread.currentThread().isInterrupted()) {
 				LiftInformationReqBody liftInformationReqBody = new LiftInformationReqBody();
 				// 生成32位数据库ID
-				liftInformationReqBody.setId(getUUID32());
-				liftInformationReqBody.setHeight(225);
+				liftInformationReqBody.setLiftId("8e7e3e54b17648e094f7f6d74b63cff6");
+				//获取高度
+				height = getLiftHeight(height);
+				liftInformationReqBody.setHeight(height);
 				// 速度限定在-200到200
 				liftInformationReqBody.setSpeed((int) (400 * (Math.random() - 0.5)));
 				liftInformationReqBody.setTimestamp(System.currentTimeMillis());
@@ -179,7 +187,14 @@ public class ShowcaseClientStarter {
 		}
 	}
 
-	private static String getUUID32(){
+	private static String getUUID32() {
 		return UUID.randomUUID().toString().replace("-", "").toLowerCase();
+	}
+
+	private static int getLiftHeight(int height) {
+		if (height > 5600 || height < 400)
+			height = 500;
+		int randomHeight = (int) ((Math.random() - 0.5) * 800);
+		return height + randomHeight;
 	}
 }

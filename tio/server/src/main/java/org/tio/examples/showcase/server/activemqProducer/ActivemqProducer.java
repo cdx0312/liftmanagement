@@ -51,7 +51,7 @@ public class ActivemqProducer {
         Connection connection = connectionFactory.createConnection();
         connection.start();
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-        Topic topic = session.createTopic("liftInfo-topic");
+        Topic topic = session.createTopic("liftInfo-Topic");
         MessageProducer producer = session.createProducer(topic);
         TextMessage activeMQ_topic = session.createTextMessage(jsonString);
         producer.send(activeMQ_topic);

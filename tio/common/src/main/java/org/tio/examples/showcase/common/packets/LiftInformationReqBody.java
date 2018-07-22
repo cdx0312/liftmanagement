@@ -16,7 +16,7 @@ public class LiftInformationReqBody extends BaseBody {
     public static void main(String[] args) {
     }
 
-    private String id;
+    private String liftId;
     private long timestamp;
     private int height;
     private int speed;
@@ -30,26 +30,26 @@ public class LiftInformationReqBody extends BaseBody {
 
     /**
      * 构造方法
-     * @param id 设备ID
+     * @param liftId 设备ID
      * @param timestamp 时间戳
      * @param height 电梯高度
      * @param speed 电梯速度
      * @param door 电梯是否开门
      */
-    public LiftInformationReqBody(String id, Long timestamp, int height, int speed, boolean door) {
-        this.id = id;
+    public LiftInformationReqBody(String liftId, Long timestamp, int height, int speed, boolean door) {
+        this.liftId = liftId;
         this.timestamp = timestamp;
         this.height = height;
         this.speed = speed;
         this.door = door;
     }
 
-    public String getId() {
-        return id;
+    public String getLiftId() {
+        return liftId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setLiftId(String liftId) {
+        this.liftId = liftId;
     }
 
     public Long getTimestamp() {
@@ -87,7 +87,7 @@ public class LiftInformationReqBody extends BaseBody {
     @Override
     public String toString() {
         return "LiftInformationReqBody{" +
-                "id='" + id + '\'' +
+                "liftId='" + liftId + '\'' +
                 ", timestamp=" + timestamp +
                 ", height=" + height +
                 ", speed=" + speed +

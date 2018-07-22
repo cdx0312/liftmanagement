@@ -1,9 +1,7 @@
 package com.hjh.lm.domain;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Date;
 
@@ -12,26 +10,26 @@ import java.util.Date;
  */
 @Entity
 public class LiftInfo {
-//    电梯编号
+    //    电梯编号
     @Id
     private String liftId;
-//    电梯坐标(经度，维度)
+    //    电梯坐标(经度，维度)
     private String liftPostion;
-//    电梯类型 1-乘客电梯，2-载货电梯，3-液压电梯，4-杂物电梯，5-自动扶梯，6-自动人行道
+    //    电梯类型 1-乘客电梯，2-载货电梯，3-液压电梯，4-杂物电梯，5-自动扶梯，6-自动人行道
     private Integer liftType;
-//    电梯安装地址，省市区
+    //    电梯安装地址，省市区
     private String liftAddress;
-//    紧急联系人
+    //    紧急联系人
     private String liftEmergenceHandleMan;
-//    紧急联系人电话
+    //    紧急联系人电话
     private String liftEmergencePhoneNumber;
-//    每天启动时间
+    //    每天启动时间
     private Date startTime;
-//    每天电梯停止时间
+    //    每天电梯停止时间
     private Date endTime;
-//    使用单位
+    //    使用单位
     private String liftAgent;
-//    群组，属于使用单位的哪个群组
+    //    群组，属于使用单位的哪个群组
     private String liftGroupAgence;
 
     public String getLiftId() {

@@ -1,7 +1,6 @@
 package com.hjh.lm.service;
 
 import com.hjh.lm.domain.LiftInfo;
-import com.hjh.lm.domain.MaintainRecord;
 import com.hjh.lm.vo.LiftInfoVo;
 
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
 public interface LiftInfoService {
     /**
      * 存储电梯设备信息数据到数据库
-     * @param liftInfo 报警事件实例
+     * @param liftInfo 电梯设备信息
      */
     void save(LiftInfo liftInfo);
 
