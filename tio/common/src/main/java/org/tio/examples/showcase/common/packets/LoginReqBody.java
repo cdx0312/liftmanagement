@@ -14,7 +14,6 @@ public class LoginReqBody extends BaseBody {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-
 	}
 
 	private String loginname;
@@ -22,7 +21,6 @@ public class LoginReqBody extends BaseBody {
 	private String password;
 
 	public LoginReqBody() {
-
 	}
 
 	/**

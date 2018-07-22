@@ -26,7 +26,6 @@ public class ShowcasePacket extends Packet {
 	/**
 	 * @param type
 	 * @param body
-	 * @author tanyaowu
 	 */
 	public ShowcasePacket(byte type, byte[] body) {
 		super();

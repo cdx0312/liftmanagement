@@ -46,4 +46,9 @@ public interface Type {
 	 */
 	byte HEART_BEAT_REQ = 99;
 
+	/**
+	 * 发送电梯数据信息请求
+	 */
+	byte SEND_LIFTINFOMATION_REQ = 66;
+
 }

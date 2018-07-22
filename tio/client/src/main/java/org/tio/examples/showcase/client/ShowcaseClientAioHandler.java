@@ -6,10 +6,7 @@ import java.util.Map;
 import org.tio.client.intf.ClientAioHandler;
 import org.tio.core.ChannelContext;
 import org.tio.core.intf.Packet;
-import org.tio.examples.showcase.client.handler.GroupMsgRespHandler;
-import org.tio.examples.showcase.client.handler.JoinGroupRespHandler;
-import org.tio.examples.showcase.client.handler.LoginRespHandler;
-import org.tio.examples.showcase.client.handler.P2PRespHandler;
+import org.tio.examples.showcase.client.handler.*;
 import org.tio.examples.showcase.common.ShowcaseAbsAioHandler;
 import org.tio.examples.showcase.common.ShowcasePacket;
 import org.tio.examples.showcase.common.Type;
@@ -20,12 +17,14 @@ import org.tio.examples.showcase.common.intf.AbsShowcaseBsHandler;
  */
 public class ShowcaseClientAioHandler extends ShowcaseAbsAioHandler implements ClientAioHandler {
 	// 将群组信息，加入群组，登录，P2P请求的四个处理器放入handlerMap中
+	// 将电梯处理信息加入到群组
 	private static Map<Byte, AbsShowcaseBsHandler<?>> handlerMap = new HashMap<>();
 	static {
 		handlerMap.put(Type.GROUP_MSG_RESP, new GroupMsgRespHandler());
 		handlerMap.put(Type.JOIN_GROUP_RESP, new JoinGroupRespHandler());
 		handlerMap.put(Type.LOGIN_RESP, new LoginRespHandler());
 		handlerMap.put(Type.P2P_RESP, new P2PRespHandler());
+		handlerMap.put(Type.SEND_LIFTINFOMATION_REQ, new LiftInfoRespHandler());
 	}
 
 	// 设置心跳包，body为空，类型为99

@@ -12,11 +12,13 @@ import org.tio.core.Node;
 import org.tio.examples.showcase.common.Const;
 import org.tio.examples.showcase.common.ShowcasePacket;
 import org.tio.examples.showcase.common.Type;
-import org.tio.examples.showcase.common.packets.GroupMsgReqBody;
-import org.tio.examples.showcase.common.packets.JoinGroupReqBody;
-import org.tio.examples.showcase.common.packets.LoginReqBody;
-import org.tio.examples.showcase.common.packets.P2PReqBody;
+import org.tio.examples.showcase.common.packets.*;
 import org.tio.utils.json.Json;
+import org.tio.utils.time.Time;
+
+import java.util.Random;
+import java.util.Scanner;
+import java.util.UUID;
 
 /**
  * 客户端开启程序
@@ -50,12 +52,13 @@ public class ShowcaseClientStarter {
 		int i = 1;
 		StringBuilder sb = new StringBuilder();
 		sb.append("使用指南:\r\n");
-		sb.append(i++ + "、需要帮助，输入 '?'.\r\n");
-		sb.append(i++ + "、登录，输入 'login loginname password'.\r\n");
-		sb.append(i++ + "、进入群组，输入 'join group1'.\r\n");
-		sb.append(i++ + "、群聊，输入 'groupMsg group1 text'.\r\n");
-		sb.append(i++ + "、点对点聊天，输入 'p2pMsg loginname text'.\r\n");
-		sb.append(i++ + "、退出程序，输入 'exit'.\r\n");
+		sb.append(i++).append("、需要帮助，输入 '?'.\r\n");
+		sb.append(i++).append("、登录，输入 'login loginname password'.\r\n");
+		sb.append(i++).append("、进入群组，输入 'join group1'.\r\n");
+		sb.append(i++).append("、群聊，输入 'groupMsg group1 text'.\r\n");
+		sb.append(i++).append("、点对点聊天，输入 'p2pMsg loginname text'.\r\n");
+		sb.append(i++).append("、将电梯数据传输到server，输入'liftInfo'.\r\n");
+		sb.append(i++).append("、退出程序，输入 'exit'.\r\n");
 		// 输出结果
 		System.out.println(sb);
 		// 这个就是用户输入的数据
@@ -117,6 +120,25 @@ public class ShowcaseClientStarter {
 
 			Tio.send(clientChannelContext, reqPacket);
 
+		} else if ("liftInfo".equals(command)) {
+			Scanner scanner = new Scanner(System.in);
+			while (!Thread.currentThread().isInterrupted()) {
+				LiftInformationReqBody liftInformationReqBody = new LiftInformationReqBody();
+				// 生成32位数据库ID
+				liftInformationReqBody.setId(getUUID32());
+				liftInformationReqBody.setHeight(225);
+				// 速度限定在-200到200
+				liftInformationReqBody.setSpeed((int) (400 * (Math.random() - 0.5)));
+				liftInformationReqBody.setTimestamp(System.currentTimeMillis());
+				// 随机生成开关门
+				liftInformationReqBody.setDoor(Math.random() < 0.5);
+				// showcasepacket封装包
+				ShowcasePacket reqPacket = new ShowcasePacket();
+				reqPacket.setType(Type.SEND_LIFTINFOMATION_REQ);
+				reqPacket.setBody(Json.toJson(liftInformationReqBody).getBytes(ShowcasePacket.CHARSET));
+				Tio.send(clientChannelContext, reqPacket);
+				Thread.sleep(2000);
+			}
 		} else if ("join".equals(command)) {
 			String group = args[1];
 
@@ -155,6 +177,9 @@ public class ShowcaseClientStarter {
 
 			Tio.send(clientChannelContext, reqPacket);
 		}
+	}
 
+	private static String getUUID32(){
+		return UUID.randomUUID().toString().replace("-", "").toLowerCase();
 	}
 }
