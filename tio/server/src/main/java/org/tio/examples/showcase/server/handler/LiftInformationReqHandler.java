@@ -11,10 +11,13 @@ import org.tio.examples.showcase.common.packets.GroupMsgReqBody;
 import org.tio.examples.showcase.common.packets.GroupMsgRespBody;
 import org.tio.examples.showcase.common.packets.LiftInformationReqBody;
 import org.tio.examples.showcase.common.packets.LiftInformationRespBody;
+import org.tio.examples.showcase.server.activemqProducer.ActivemqProducer;
 import org.tio.utils.json.Json;
 
 public class LiftInformationReqHandler extends AbsShowcaseBsHandler<LiftInformationReqBody> {
 	private static Logger log = LoggerFactory.getLogger(LiftInformationReqHandler.class);
+
+	private ActivemqProducer activemqProducer = new ActivemqProducer();
 
 	public static void main(String[] args) {
 	}
@@ -30,6 +33,8 @@ public class LiftInformationReqHandler extends AbsShowcaseBsHandler<LiftInformat
 	@Override
 	public Object handler(ShowcasePacket packet, LiftInformationReqBody liftInformationReqBody, ChannelContext channelContext) throws Exception {
 		log.info("获取到的电梯数据信息:{}", Json.toJson(liftInformationReqBody));
+		// 将电梯数据发送到队列
+		activemqProducer.sendQueueProducer(Json.toJson(liftInformationReqBody));
 		LiftInformationRespBody liftInformationRespBody = new LiftInformationRespBody();
 		liftInformationRespBody.setCode(200);
 		liftInformationRespBody.setMsg(liftInformationReqBody.toString());
