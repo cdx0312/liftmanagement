@@ -8,11 +8,8 @@ import java.util.Date;
 /**
  * 报警事件处理记录实体
  * */
-@Entity
 public class AlertEventVo {
     // 报警编号
-    @Id
-    @GeneratedValue
     private Long id;
     // 收到报警时间
     private Date startTime;

@@ -31,7 +31,6 @@ public class AlertEvent {
     // 报警方式 页面，短信
     // private Integer alertway;
 
-
     public Long getId() {
         return id;
     }

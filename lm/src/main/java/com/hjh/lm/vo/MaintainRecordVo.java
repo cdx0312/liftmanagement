@@ -8,10 +8,7 @@ import java.util.Date;
 /**
  * 保养记录
  */
-@Entity
 public class MaintainRecordVo {
-    @Id
-    @GeneratedValue
     private Long maintainRecordId;
     // 电梯编号
     private String liftId;

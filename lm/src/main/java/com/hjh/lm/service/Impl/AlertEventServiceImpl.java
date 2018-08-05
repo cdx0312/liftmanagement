@@ -49,7 +49,7 @@ public class AlertEventServiceImpl implements AlertEventService {
                     list.add(criteriaBuilder.equal(root.get("alertReason").as(Integer.class), alertReason));
                 }
                 if (state != null){
-                    list.add(criteriaBuilder.equal(root.get("state").as(Integer.class), state));
+                    list.add(criteriaBuilder.equal(root.get("alertState").as(Integer.class), state));
                 }
                 if (process != null){
                     list.add(criteriaBuilder.equal(root.get("process").as(Integer.class), process));
