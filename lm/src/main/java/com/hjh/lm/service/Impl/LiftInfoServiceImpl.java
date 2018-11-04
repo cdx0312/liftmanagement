@@ -69,6 +69,11 @@ public class LiftInfoServiceImpl implements LiftInfoService {
         return liftInfos;
     }
 
+    @Override
+    public List<LiftInfo> getAllListInfosWithNoRestrition() {
+        return liftInfoRepository.findAll();
+    }
+
     /**
      * 根据电梯编号删除电梯
      * @param liftId 电梯编号
