@@ -7,8 +7,6 @@ import org.tio.core.Tio;
 import org.tio.examples.showcase.common.ShowcasePacket;
 import org.tio.examples.showcase.common.Type;
 import org.tio.examples.showcase.common.intf.AbsShowcaseBsHandler;
-import org.tio.examples.showcase.common.packets.GroupMsgReqBody;
-import org.tio.examples.showcase.common.packets.GroupMsgRespBody;
 import org.tio.examples.showcase.common.packets.LiftInformationReqBody;
 import org.tio.examples.showcase.common.packets.LiftInformationRespBody;
 import org.tio.examples.showcase.server.activemqProducer.ActivemqProducer;
@@ -41,7 +39,7 @@ public class LiftInformationReqHandler extends AbsShowcaseBsHandler<LiftInformat
 		liftInformationRespBody.setLiftStatus(String.valueOf(liftInformationReqBody.getSpeed()));
 
 		ShowcasePacket respPacket = new ShowcasePacket();
-		respPacket.setType(Type.SEND_LIFTINFOMATION_REQ);
+		respPacket.setType(Type.SEND_LIFTINFORMATION_REQ);
 		respPacket.setBody(Json.toJson(liftInformationRespBody).getBytes(ShowcasePacket.CHARSET));
 		Tio.send(channelContext, respPacket);
 		return null;

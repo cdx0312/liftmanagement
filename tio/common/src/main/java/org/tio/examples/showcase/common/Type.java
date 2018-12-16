@@ -49,6 +49,10 @@ public interface Type {
 	/**
 	 * 发送电梯数据信息请求
 	 */
-	byte SEND_LIFTINFOMATION_REQ = 66;
+	byte SEND_LIFTINFORMATION_REQ = 66;
+
+	byte SEND_LIFTDETAIL_REQUEST = 10;
+
+	byte SEND_LIFTDETAIL_RESPONSE = 11;
 
 }

@@ -14,9 +14,7 @@ import org.tio.examples.showcase.common.ShowcasePacket;
 import org.tio.examples.showcase.common.Type;
 import org.tio.examples.showcase.common.packets.*;
 import org.tio.utils.json.Json;
-import org.tio.utils.time.Time;
 
-import java.util.Random;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -62,6 +60,7 @@ public class ShowcaseClientStarter {
 		sb.append(i++).append("、群聊，输入 'groupMsg group1 text'.\r\n");
 		sb.append(i++).append("、点对点聊天，输入 'p2pMsg loginname text'.\r\n");
 		sb.append(i++).append("、将电梯数据传输到server，输入'liftInfo'.\r\n");
+		sb.append(i++).append("、传输电梯详情信息到server，输入'liftInfoDetail'.\r\n");
 		sb.append(i++).append("、退出程序，输入 'exit'.\r\n");
 		// 输出结果
 		System.out.println(sb);
@@ -142,11 +141,20 @@ public class ShowcaseClientStarter {
 				liftInformationReqBody.setDoor(Math.random() < 0.5);
 				// showcasepacket封装包
 				ShowcasePacket reqPacket = new ShowcasePacket();
-				reqPacket.setType(Type.SEND_LIFTINFOMATION_REQ);
+				reqPacket.setType(Type.SEND_LIFTINFORMATION_REQ);
 				reqPacket.setBody(Json.toJson(liftInformationReqBody).getBytes(ShowcasePacket.CHARSET));
 				Tio.send(clientChannelContext, reqPacket);
 				Thread.sleep(2000);
 			}
+		} else if ("liftInfoDetail".equals(command)) {
+			LiftInfoDetailReqBody liftInfoDetailReqBody = new LiftInfoDetailReqBody();
+			liftInfoDetailReqBody.setLiftId("12kj2k31j2j344kj123123");
+			liftInfoDetailReqBody.setPrices(12000.00);
+			liftInfoDetailReqBody.setProduceCompany("company lift city");
+			ShowcasePacket packet = new ShowcasePacket();
+			packet.setType(Type.SEND_LIFTDETAIL_REQUEST);
+			packet.setBody(Json.toJson(liftInfoDetailReqBody).getBytes(ShowcasePacket.CHARSET));
+			Tio.send(clientChannelContext, packet);
 		} else if ("join".equals(command)) {
 			String group = args[1];
 

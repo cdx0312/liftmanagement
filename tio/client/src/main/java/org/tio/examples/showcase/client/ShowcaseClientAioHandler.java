@@ -24,7 +24,8 @@ public class ShowcaseClientAioHandler extends ShowcaseAbsAioHandler implements C
 		handlerMap.put(Type.JOIN_GROUP_RESP, new JoinGroupRespHandler());
 		handlerMap.put(Type.LOGIN_RESP, new LoginRespHandler());
 		handlerMap.put(Type.P2P_RESP, new P2PRespHandler());
-		handlerMap.put(Type.SEND_LIFTINFOMATION_REQ, new LiftInfoRespHandler());
+		handlerMap.put(Type.SEND_LIFTINFORMATION_REQ, new LiftInfoRespHandler());
+		handlerMap.put(Type.SEND_LIFTDETAIL_RESPONSE, new LiftInfoDetailRespHandler());
 	}
 
 	// 设置心跳包，body为空，类型为99

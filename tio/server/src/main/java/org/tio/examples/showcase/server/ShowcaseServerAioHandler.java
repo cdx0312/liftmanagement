@@ -29,7 +29,8 @@ public class ShowcaseServerAioHandler extends ShowcaseAbsAioHandler implements S
 		handlerMap.put(Type.JOIN_GROUP_REQ, new JoinGroupReqHandler());
 		handlerMap.put(Type.LOGIN_REQ, new LoginReqHandler());
 		handlerMap.put(Type.P2P_REQ, new P2PReqHandler());
-		handlerMap.put(Type.SEND_LIFTINFOMATION_REQ, new LiftInformationReqHandler());
+		handlerMap.put(Type.SEND_LIFTINFORMATION_REQ, new LiftInformationReqHandler());
+		handlerMap.put(Type.SEND_LIFTDETAIL_REQUEST, new LiftInfoDetailReqHandler());
 	}
 
 	/**

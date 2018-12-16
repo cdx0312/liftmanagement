@@ -28,7 +28,7 @@ public abstract class ShowcaseAbsAioHandler implements AioHandler {
 	@Override
 	public ShowcasePacket decode(ByteBuffer buffer, int limit, int position, int readableLength, ChannelContext channelContext) throws AioDecodeException {
 		//可读数据，小于头部的固定长度，直接返回null，这样tio框架会自动把本次收到的数据暂存起来，并和下次收到的数据组合起来
-		if (readableLength < ShowcasePacket.HEADER_LENGHT) {
+		if (readableLength < ShowcasePacket.HEADER_LENGTH) {
 			return null;
 		}
 
@@ -42,7 +42,7 @@ public abstract class ShowcaseAbsAioHandler implements AioHandler {
 			throw new AioDecodeException("bodyLength [" + bodyLength + "] is not right, remote:" + channelContext.getClientNode());
 		}
 
-		int neededLength = ShowcasePacket.HEADER_LENGHT + bodyLength;
+		int neededLength = ShowcasePacket.HEADER_LENGTH + bodyLength;
 		int test = readableLength - neededLength;
 		if (test < 0) // 不够消息体长度(剩下的buffe组不了消息体)
 		{
@@ -80,7 +80,7 @@ public abstract class ShowcaseAbsAioHandler implements AioHandler {
 		}
 
 		//总长度是  消息头的长度+消息体的长度
-		int allLen = ShowcasePacket.HEADER_LENGHT + bodyLen;
+		int allLen = ShowcasePacket.HEADER_LENGTH + bodyLen;
 		// 分配字节缓冲区并填充
 		ByteBuffer buffer = ByteBuffer.allocate(allLen);
 		buffer.order(groupContext.getByteOrder());

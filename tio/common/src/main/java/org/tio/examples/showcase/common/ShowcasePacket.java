@@ -8,7 +8,7 @@ import org.tio.core.intf.Packet;
 public class ShowcasePacket extends Packet {
 	private static final long serialVersionUID = -5481926483435771100L;
 	//消息头的长度 1+4
-	public static final int HEADER_LENGHT = 5;
+	public static final int HEADER_LENGTH = 5;
 	// 字符编码方式
 	public static final String CHARSET = "utf-8";
 
