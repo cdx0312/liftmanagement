@@ -71,6 +71,7 @@ public class LoginReqHandler extends AbsShowcaseBsHandler<LoginReqBody> {
 
 		MyPacket respPacket = new MyPacket();
 		respPacket.setType(Type.LOGIN_RESP);
+		respPacket.setTimestamp(System.currentTimeMillis());
 		respPacket.setBody(Json.toJson(loginRespBody).getBytes(MyPacket.CHARSET));
 		Tio.send(channelContext, respPacket);
 

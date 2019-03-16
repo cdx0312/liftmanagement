@@ -1,10 +1,12 @@
 package com.hjh.tio.common;
 
+import lombok.Data;
 import org.tio.core.intf.Packet;
 
 /**
  * 包结构，集成Packet类
  */
+@Data
 public class MyPacket extends Packet {
 	private static final long serialVersionUID = -5481926483435771100L;
 	//消息头的长度 1+4
@@ -16,6 +18,8 @@ public class MyPacket extends Packet {
 	 * 消息类型，其值在org.tio.examples.showcase.common.Type中定义
 	 */
 	private byte type;
+
+	private Long timestamp;
 	// body数组
 	private byte[] body;
 

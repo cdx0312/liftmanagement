@@ -59,6 +59,7 @@ public class GroupMsgReqHandler extends AbsShowcaseBsHandler<GroupMsgReqBody> {
 
 		MyPacket respPacket = new MyPacket();
 		respPacket.setType(Type.GROUP_MSG_RESP);
+		respPacket.setTimestamp(System.currentTimeMillis());
 		respPacket.setBody(Json.toJson(groupMsgRespBody).getBytes(MyPacket.CHARSET));
 		Tio.sendToGroup(channelContext.groupContext, bsBody.getToGroup(), respPacket);
 

@@ -40,6 +40,7 @@ public class LiftInformationReqHandler extends AbsShowcaseBsHandler<LiftInformat
 
 		MyPacket respPacket = new MyPacket();
 		respPacket.setType(Type.SEND_LIFTINFORMATION_REQ);
+		respPacket.setTimestamp(System.currentTimeMillis());
 		respPacket.setBody(Json.toJson(liftInformationRespBody).getBytes(MyPacket.CHARSET));
 		Tio.send(channelContext, respPacket);
 		return null;

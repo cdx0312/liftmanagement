@@ -61,6 +61,7 @@ public class JoinGroupReqHandler extends AbsShowcaseBsHandler<JoinGroupReqBody> 
 
 		MyPacket respPacket = new MyPacket();
 		respPacket.setType(Type.JOIN_GROUP_RESP);
+		respPacket.setTimestamp(System.currentTimeMillis());
 		respPacket.setBody(Json.toJson(joinGroupRespBody).getBytes(MyPacket.CHARSET));
 		Tio.send(channelContext, respPacket);
 		return null;
